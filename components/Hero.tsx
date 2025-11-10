@@ -1,13 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { useState } from "react";
 import Link from "next/link";
 import { personalInfo, contactInfo } from "@/lib/data";
 import { fadeInUp, fadeIn } from "./animations";
 import { FaArrowDown, FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function Hero() {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 bg-gradient-to-br from-primary-50 via-white to-accent-blue/5 relative">
       <div className="max-w-7xl mx-auto">
@@ -103,14 +105,14 @@ export default function Hero() {
             <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
               <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-accent-teal rounded-full blur-2xl opacity-30"></div>
               <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl border-4 border-white">
-                {personalInfo.headshot ? (
-                  <Image
+                {personalInfo.headshot && !imageError ? (
+                  <img
                     src={personalInfo.headshot}
                     alt={personalInfo.name || "Profile Picture"}
-                    fill
-                    sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
-                    className="object-cover"
-                    priority
+                    className="w-full h-full object-cover"
+                    onError={() => {
+                      setImageError(true);
+                    }}
                   />
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-primary-400 to-accent-teal flex items-center justify-center text-white text-6xl font-bold">

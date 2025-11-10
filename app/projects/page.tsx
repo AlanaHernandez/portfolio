@@ -8,7 +8,7 @@ export default function ProjectsPage() {
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-gray-900 mb-4">Projects</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Explore my work in biotechnology, bioprocess design, and engineering solutions.
+            Explore my work in biotechnology, bioprocess design, and bioengineering solutions.
           </p>
         </div>
         

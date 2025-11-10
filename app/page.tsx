@@ -20,8 +20,8 @@ export default function Home() {
           </h2>
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-lg text-gray-700 leading-relaxed">
-              Hello! My name is Alana Hernandez Orellana, and I am a Master's in Business and Technology student 
-              at Purdue University with a Bachelor's in Biological Engineering. I am seeking a full-time position 
+              Hello! My name is Alana Hernandez Orellana, and I am a Master&apos;s in Business and Technology student 
+              at Purdue University with a Bachelor&apos;s in Biological Engineering. I am seeking a full-time position 
               within the biotechnology industry, where I can apply my skills in bioprocess design, microbial research, 
               data analysis, and cross-functional team collaboration. I am eager to expand my experience in leading 
               projects and integrating technical problem-solving with strategic business thinking.

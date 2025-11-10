@@ -134,10 +134,30 @@ Visit [http://localhost:8080](http://localhost:8080) to see the application.
    ```bash
    gcloud config set project YOUR_PROJECT_ID
    ```
+4. Enable required APIs:
+   ```bash
+   gcloud services enable cloudbuild.googleapis.com
+   gcloud services enable run.googleapis.com
+   ```
 
-### Deploy to Cloud Run
+### Deploy to Cloud Run (Using Cloud Build - No Docker Required)
 
-1. **Build and push to Google Container Registry**
+**Option 1: Deploy from source (Recommended - Easiest)**
+
+This method builds and deploys in one step:
+
+```bash
+gcloud run deploy portfolio-website \
+  --source . \
+  --platform managed \
+  --region us-central1 \
+  --allow-unauthenticated \
+  --port 8080
+```
+
+**Option 2: Build and deploy separately**
+
+1. **Build and push using Cloud Build**
    ```bash
    gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/portfolio-website
    ```
@@ -152,11 +172,11 @@ Visit [http://localhost:8080](http://localhost:8080) to see the application.
      --port 8080
    ```
 
-   Alternatively, use the Cloud Run web console:
+**Option 3: Using Cloud Run web console**
    - Go to [Cloud Run Console](https://console.cloud.google.com/run)
    - Click "Create Service"
-   - Select "Deploy one revision from an existing container image"
-   - Enter your container image URL
+   - Select "Deploy one revision from a source repository" or "Deploy one revision from an existing container image"
+   - Follow the prompts to deploy
    - Set port to 8080
    - Click "Create"
 

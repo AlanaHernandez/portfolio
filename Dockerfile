@@ -15,6 +15,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Install sharp for image optimization (required for Next.js Image component)
+RUN npm install sharp
+
 # Set environment variables for build
 ENV NEXT_TELEMETRY_DISABLED 1
 
@@ -32,8 +35,13 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 # Copy necessary files from builder
-COPY --from=builder /app/public ./public
+# Copy standalone build (includes server.js and necessary files)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+
+# Copy public directory for static assets (must be at root for Next.js to serve)
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+
+# Copy static files
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
